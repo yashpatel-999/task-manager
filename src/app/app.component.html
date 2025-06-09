@@ -28,39 +28,16 @@
 </div>
 <div class="task-list">
 <p>
-  Total: {{ tasks.length }} | ✅ Completed: {{ completedCount }} | ⏳ Pending: {{ pendingCount }} | ⚠️ Overdue: {{ overdueCount }}
+  Total: {{ tasks.length }} |  Completed: {{ completedCount }} |  Pending: {{ pendingCount }} |  Overdue: {{ overdueCount }}
 </p>
 <ul>
-  <li *ngFor="let task of filteredTasks"
-      [ngClass]="{
-        'high': task.priority === 'High',
-        'medium': task.priority === 'Medium',
-        'low': task.priority === 'Low',
-        'completed': task.completed,
-        'overdue': isOverdue(task)
-      }">
-    
-    <span>{{ task.name }}</span> |
-    
-    <span [ngSwitch]="task.priority">
-      <span *ngSwitchCase="'High'">🔴 Urgent</span>
-      <span *ngSwitchCase="'Medium'">🟠 Moderate</span>
-      <span *ngSwitchCase="'Low'">🟢 Normal</span>
-      <span *ngSwitchDefault>⚪ Unknown</span>
-    </span> |
-    
-    Due: {{ task.date }} |
-    
-    Status: {{ task.completed ? '✔️ Completed' : '⏳ Pending' }}
-    
-    <button (click)="toggleStatus(task)">
-      Mark as {{ task.completed ? 'Pending' : 'Completed' }}
-    </button>
-    
-    <button (click)="deleteTask(task)">🗑 Delete</button>
-
-    <div *ngIf="isOverdue(task)">⚠️ Overdue!</div>
-  </li>
+  <app-child-task
+    *ngFor="let task of filteredTasks"
+    [task]="task"
+    [isOverdue]="isOverdue(task)"
+    (toggle)="toggleStatus(task)"
+    (delete)="deleteTask(task)"
+  ></app-child-task>
 </ul>
 <div *ngIf="filteredTasks.length === 0">
   No tasks found.

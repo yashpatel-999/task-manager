@@ -6,23 +6,7 @@ body{
   padding: 0px;
   margin:0px;
 }
-li.high {
-  color: red;
-}
-li.medium {
-  color: orange;
-}
-li.low {
-  color: green;
-}
-li.completed span {
-  text-decoration: line-through;
-}
-li.overdue {
-  background-color: #ffe5e5;
-  border-left: 4px solid red;
-  padding: 5px;
-}
+
 
 ul {
   list-style: none;

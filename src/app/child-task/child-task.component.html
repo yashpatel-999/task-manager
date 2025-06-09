@@ -1,0 +1,30 @@
+<li
+  [ngClass]="{
+    'high': task.priority === 'High',
+    'medium': task.priority === 'Medium',
+    'low': task.priority === 'Low',
+    'completed': task.completed,
+    'overdue': isOverdue
+  }"
+>
+  <span>{{ task.name }}</span> |
+
+  <span [ngSwitch]="task.priority">
+    <span *ngSwitchCase="'High'">🔴 Urgent</span>
+    <span *ngSwitchCase="'Medium'">🟠 Moderate</span>
+    <span *ngSwitchCase="'Low'">🟢 Normal</span>
+    <span *ngSwitchDefault>⚪ Unknown</span>
+  </span> |
+
+  Due: {{ task.date }} |
+
+  Status: {{ task.completed ? '✔️ Completed' : '⏳ Pending' }}
+
+  <button (click)="onToggle()">
+    Mark as {{ task.completed ? 'Pending' : 'Completed' }}
+  </button>
+
+  <button (click)="onDelete()">🗑 Delete</button>
+
+  <span *ngIf="isOverdue" style="color: #e53935; font-weight: bold;">⚠️ Overdue!</span>
+</li>

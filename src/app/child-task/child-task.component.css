@@ -1,0 +1,14 @@
+li.high {
+  color: red;
+}
+li.medium {
+  color: orange;
+}
+li.low {
+  color: green;
+}
+li.overdue {
+  background-color: #ffe5e5;
+  border-left: 4px solid red;
+  padding: 5px;
+}

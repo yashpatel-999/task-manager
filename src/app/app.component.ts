@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import {ChildTaskComponent} from './child-task/child-task.component';
 
 @Component({
   selector: 'app-root',
-  standalone:true,
-  imports: [FormsModule, CommonModule, RouterOutlet],
+  standalone: true,
+  imports: [FormsModule, CommonModule, RouterOutlet, ChildTaskComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -16,7 +17,7 @@ export class AppComponent {
   date = '';
 
   tasks: { name: string; priority: string; date: string; completed: boolean }[] = [];
-  filter: 'all' | 'completed' | 'pending' = 'all';
+  filter = 'all';
 
   addTask() {
     if (this.taskName && this.priority && this.date) {
@@ -36,9 +37,7 @@ export class AppComponent {
 
   deleteTask(task: any) {
     const index = this.tasks.indexOf(task);
-    if (index > -1) {
-      this.tasks.splice(index, 1);
-    }
+    this.tasks.splice(index, 1);
   }
 
   toggleStatus(task: any) {
