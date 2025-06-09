@@ -22,9 +22,9 @@ export class AppComponent {
   addTask() {
     if (this.taskName && this.priority && this.date) {
       this.tasks.push({
-        name: this.taskName.trim(),
-        priority: this.priority.trim(),
-        date: this.date.trim(),
+        name: this.taskName,
+        priority: this.priority,
+        date: this.date,
         completed: false
       });
       this.taskName = '';
